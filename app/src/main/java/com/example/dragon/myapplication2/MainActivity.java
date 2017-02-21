@@ -15,7 +15,7 @@ import android.widget.Toast;
 import static com.example.dragon.myapplication2.R.id.button1;
 import static com.example.dragon.myapplication2.R.id.button2;
 import static com.example.dragon.myapplication2.R.id.button3;
-
+import static com.example.dragon.myapplication2.R.id.textView1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,17 +23,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState){
-        TextView tv=(TextView) findViewById(R.id.textView1);
+        TextView tv=(TextView) findViewById(textView1);
         outState.putString(NAPIS, tv.getText().toString());
         super.onSaveInstanceState(outState);
     }
-    @Override
+ /*   @Override
     protected void  onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
-        TextView tv=(TextView) findViewById(R.id.textView1);
+        TextView tv=(TextView) findViewById(textView1);
         tv.setText(savedInstanceState.getString(NAPIS));
     }
-
+*/
 
 
 
@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (savedInstanceState!=null){
-            TextView tv =(TextView) findViewById(R.id.textView1);
-            tv.setText(savedInstanceState.getString(NAPIS));
-        }
+//        if (savedInstanceState!=null){
+//            TextView tv =(TextView) findViewById(textView1);
+//            tv.setText(savedInstanceState.getString(NAPIS));
+//        }
 
 
 
@@ -88,8 +88,9 @@ public class MainActivity extends AppCompatActivity {
     private void buttonClick(View v) {
         String name = ((Button) v).getText().toString();  // extract name form button properties
         Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-        TextView tv = (TextView) findViewById(R.id.textView1);
+        TextView tv = (TextView) findViewById(textView1);
         tv.setText(name);
+
     }
 
 
