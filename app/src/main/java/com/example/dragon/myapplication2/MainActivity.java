@@ -9,13 +9,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import static com.example.dragon.myapplication2.R.id.button1;
 import static com.example.dragon.myapplication2.R.id.button2;
 import static com.example.dragon.myapplication2.R.id.button3;
 
+
 public class MainActivity extends AppCompatActivity {
+
+    public  static  final String NAPIS ="napis_na_etykiecie";
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        TextView tv=(TextView) findViewById(R.id.textView1);
+        outState.putString(NAPIS, tv.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
+    @Override
+    protected void  onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+        TextView tv=(TextView) findViewById(R.id.textView1);
+        tv.setText(savedInstanceState.getString(NAPIS));
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if (savedInstanceState!=null){
+            TextView tv =(TextView) findViewById(R.id.textView1);
+            tv.setText(savedInstanceState.getString(NAPIS));
+        }
+
+
 
         Button b1 = (Button) findViewById(button1);
         Button b2 = (Button) findViewById(button2);
@@ -55,11 +81,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+
     private void buttonClick(View v) {
         String name = ((Button) v).getText().toString();  // extract name form button properties
         Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-        //TextView tv = (TextView) findViewById(R.id.textViewMessage);
-        //tv.setText("button");
+        TextView tv = (TextView) findViewById(R.id.textView1);
+        tv.setText(name);
     }
 
 
